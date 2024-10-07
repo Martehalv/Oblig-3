@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karakterkalkulator - Oblig 3</title>
+    <style>
+        body {
+            padding: 1rem;
+        }
+
+        p {
+            padding: 10px;
+        }
+        button {
+            font-size: 15px;
+            padding: 20px;
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Regn ut karakteren din</h1>
+    <p>
+        <label for="oppgave-1">Skriv inn poeng fra oppgave 1: </label>
+        <input id="oppgave-1" type="number"/>
+    </p>
+    <p>
+        <label for="oppgave-2">Skriv inn poeng fra oppgave 2: </label>
+        <input id="oppgave-2" type="number"/>
+    </p>
+    <p><button onclick="gradesCalculator()">Beregn karakter</button></p>
+    <p id="ferdig-karakter"></p>
+
+    <script>
+        function gradesCalculator() {
+            //Hente ut poeng fra oppgavene
+            let points1 = document.getElementById("oppgave-1").value 
+            let points2 = document.getElementById("oppgave-2").value
+
+            //Skrive inn maks poengene til oppgave 1 og 2
+            let maxpoints1 = 10 
+            let maxpoints2 = 12
+
+            //Putte inn karakterskala
+            const grades = [
+                {grade: "F", treshold: 0},
+                {grade: "E", treshold: 25},
+                {grade: "D", treshold: 44},
+                {grade: "C", treshold: 68},
+                {grade: "B", treshold: 88},
+                {grade: "A", treshold: 100}
+            ]
+
+            //Skrive inn formel til å beregne karkater
+            let score = 
+            (0.3 * (points1 / maxpoints1 * 100)) + (0.7 * (points2 / maxpoints2 * 100))
+            console.log(score)
+
+            // Sjekke for feil input
+            if(points1 == null || points1 == "" || points2 == null || points2 == "") {    
+                document.getElementById("ferdig-karakter").innerHTML = "Du har ikke skrevet inn noen poeng"
+                return
+            }
+
+            //Sjekke om det er skrevet flere poeng enn mulig
+            if(points1 > maxpoints1  || points2 > maxpoints2) {
+                document.getElementById("ferdig-karakter").innerHTML = "Du har skrevet flere poeng enn det er mulig i eksamensoppgaven."
+                return
+            }
+
+            //Lage en for loop for arrayen som sjekker poengene
+            let size = grades.length
+            let correctgrade = ""
+            for(let i = 0; i < size; i++) {
+                if(score <= grades[i].treshold) {
+                    correctgrade = grades[i].grade
+                    break
+                }
+            }
+
+            document.getElementById("ferdig-karakter").innerHTML = "Ut ifra dine poeng fra eksamen, er din karakter: " + correctgrade
+        }
+    </script>
+</body>
+</html>
