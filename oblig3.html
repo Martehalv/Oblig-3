@@ -57,8 +57,8 @@
             (0.3 * (points1 / maxpoints1 * 100)) + (0.7 * (points2 / maxpoints2 * 100))
             console.log(score)
 
-            // Sjekke for feil input
-            if(points1 == null || points1 == "" || points2 == null || points2 == "") {    
+            // Sjekke for feil input      //https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_validation_empty_input
+            if(points1 == null || points1 == "" || points2 == null || points2 == "") {         //https://www.w3schools.com/js/js_comparisons.asp  og  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/null
                 document.getElementById("ferdig-karakter").innerHTML = "Du har ikke skrevet inn noen poeng"
                 return
             }
@@ -70,9 +70,9 @@
             }
 
             //Lage en for loop for arrayen som sjekker poengene
-            let size = grades.length
+            let size = grades.length           //https://www.w3schools.com/jsref/jsref_length_array.asp
             let correctgrade = ""
-            for(let i = 0; i < size; i++) {
+            for(let i = 0; i < size; i++) {            //https://www.w3schools.com/jsref/jsref_oper_increment.asp  og  https://www.w3schools.com/js/js_loop_for.asp
                 if(score <= grades[i].treshold) {
                     correctgrade = grades[i].grade
                     break
